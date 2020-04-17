@@ -41,8 +41,12 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // `default` values. See the [mongoose docs](http://mongoosejs.com/docs/guide.html).
 
 // <Your code here >
+   var Person = new mongoose.Schema;({
+    name: {type: String, required: true}, // String is shorthand for {type: String}
+    age: Number,
+    favoriteFoods: [String]
+  });
 
-var Person /* = <Your Model> */
 
 // **Note**: Glitch is a real server, and in real servers interactions with
 // the db are placed in handler functions, to be called when some event happens
