@@ -143,7 +143,7 @@ var findPeopleByName = function(personName, done) {
 // argument `food` as search key
 
 var findOneByFood = function(food, done) {
-  Person.findOne({favoriteFoods: personName}, function(err, data) {
+  Person.findOne({favoriteFoods: food}, function(err, data) {
     if (err) return console.error(err);
     done(null, data);
   });    
