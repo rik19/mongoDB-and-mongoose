@@ -85,9 +85,14 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // });
 
 var createAndSavePerson = function(done) {
-  var 
-  done(null /*, data*/);
-
+  const persona = new Person({name: "Rik", age: 18, favoriteFoods: ["patatas", "chocolate"]});
+  //await persona.save();
+  persona.save(function(err, data) {
+    if (err) {
+      return console.error(err);
+    }
+    done(null, data);
+  });  
 };
 
 /** 4) Create many People with `Model.create()` */
