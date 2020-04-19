@@ -195,8 +195,10 @@ var findEditThenSave = function(personId, done) {
   var persona = Person.findById(personId, function(err, person) {
     if (err) return console.error(err);
     person["favoriteFoods"].push("hamburger");
-    person.save();
-    done(null, person);
+    person.save(function(err, data){
+      if (err) return console.log(err);
+      done(null, data);
+    });    
   })    
 };
 
@@ -217,6 +219,7 @@ var findEditThenSave = function(personId, done) {
 
 var findAndUpdate = function(personName, done) {
   var ageToSet = 20;
+  Person.findOneAndUpdate({name: personName})
 
   done(null/*, data*/);
 };
