@@ -219,7 +219,7 @@ var findEditThenSave = function(personId, done) {
 
 var findAndUpdate = function(personName, done) {
   var ageToSet = 20;
-  Person.findOneAndUpdate({name: personName}, {age: ageToSet}, {new:true}, function(err, person) {
+  return Person.findOneAndUpdate({name: personName}, {age: ageToSet}, {new:true}, function(err, person) {
     if (err) return console.error(err);
     done(null, person);
   });
@@ -236,9 +236,10 @@ var findAndUpdate = function(personName, done) {
 // As usual, use the function argument `personId` as search key.
 
 var removeById = function(personId, done) {
-  
-  done(null/*, data*/);
-    
+  Person.findByIdAndRemove(personId, function(err, data) {
+    if (err) return console.error(err);
+    done(null, data);
+  })    
 };
 
 /** 11) Delete many People */
@@ -253,8 +254,10 @@ var removeById = function(personId, done) {
 
 var removeManyPeople = function(done) {
   var nameToRemove = "Mary";
-
-  done(null/*, data*/);
+  Person.remove({name: nameToRemove}, function(err, data) {
+    if (err) return console.error(err);
+    done(null, data);
+  });
 };
 
 /** # C[R]UD part V -  More about Queries # 
