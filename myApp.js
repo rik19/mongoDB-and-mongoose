@@ -192,9 +192,10 @@ var findPersonById = function(personId, done) {
 
 var findEditThenSave = function(personId, done) {
   var foodToAdd = 'hamburger';
-  Person.findById(personId, function(err, data) {
+  var persona = Person.findById(personId, function(err, data) {
     if (err) return console.error(err);
-    
+    data["favoriteFoods"].push("hamburger");
+    Person.save();
   })
   
   done(null/*, data*/);
