@@ -159,9 +159,10 @@ var findOneByFood = function(food, done) {
 // Use the function argument 'personId' as search key.
 
 var findPersonById = function(personId, done) {
-  
-  done(null/*, data*/);
-  
+  Person.findById(personId, function(err, data) {
+    if (err) return console.error(err);
+    done(null, data);
+  });  
 };
 
 /** # CR[U]D part III - UPDATE # 
@@ -191,6 +192,10 @@ var findPersonById = function(personId, done) {
 
 var findEditThenSave = function(personId, done) {
   var foodToAdd = 'hamburger';
+  Person.findById(personId, function(err, data) {
+    if (err) return console.error(err);
+    
+  })
   
   done(null/*, data*/);
 };
